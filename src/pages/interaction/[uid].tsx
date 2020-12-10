@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro';
-import { I18n } from "@lingui/react";
-import React from 'react';
+import { I18n } from '@lingui/react';
+import * as React from 'react';
 
 type InteractionProps = {
   uid: string;
@@ -10,7 +10,13 @@ type InteractionProps = {
   passwordMessage: string;
 };
 
-const Interaction = ({ uid, account, prevPassword, accountMessage, passwordMessage }: InteractionProps) => {
+const Interaction = ({
+  uid,
+  account,
+  prevPassword,
+  accountMessage,
+  passwordMessage,
+}: InteractionProps) => {
   const [username, setUsername] = React.useState(account);
   const [password, setPassword] = React.useState(prevPassword);
   const errorCode = -1021;
@@ -43,15 +49,19 @@ const Interaction = ({ uid, account, prevPassword, accountMessage, passwordMessa
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <input type='hidden' name="errorCode" value={errorCode} />
-              <input type='hidden' name="errorMessage" value={errorMessage} />
+              <input type="hidden" name="errorCode" value={errorCode} />
+              <input type="hidden" name="errorMessage" value={errorMessage} />
               <div>{passwordMessage}</div>
               <br />
-              <button type="submit" formMethod="post" formAction={`/interaction/${uid}/login`} >
+              <button type="submit" formMethod="post" formAction={`/interaction/${uid}/login`}>
                 {i18n._(t`Login - success`)}
               </button>
               <br />
-              <button type="submit" formMethod="get" formAction={`/interaction/${uid}/NotAuthorized`}>
+              <button
+                type="submit"
+                formMethod="get"
+                formAction={`/interaction/${uid}/NotAuthorized`}
+              >
                 {i18n._(t`Login - not authorized`)}
               </button>
               <br />
@@ -67,7 +77,11 @@ const Interaction = ({ uid, account, prevPassword, accountMessage, passwordMessa
                 {i18n._(t`Login - has expired`)}
               </button>
               <br />
-              <button type="submit" formMethod="get" formAction={`/interaction/${uid}/ChangePassword`}>
+              <button
+                type="submit"
+                formMethod="get"
+                formAction={`/interaction/${uid}/ChangePassword`}
+              >
                 {i18n._(t`Login - change password`)}
               </button>
               <br />
@@ -85,7 +99,8 @@ export function getServerSideProps(context: any) {
   const account = query.account || '';
   const prevPassword = query.prevPassword || '';
 
-  let accountMessage, passwordMessage;
+  let accountMessage;
+  let passwordMessage;
   if (req.body) {
     accountMessage = query.accountMessage;
     passwordMessage = query.passwordMessage;

@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro';
-import { I18n } from "@lingui/react";
-import React from 'react';
+import { I18n } from '@lingui/react';
+import * as React from 'react';
 
 type ChangePasswordProps = {
     uid: string;
@@ -11,8 +11,14 @@ type ChangePasswordProps = {
     passwordErrorMessage: string;
 };
 
-
-const ChangePassword = ({ uid, account, password, newPassword, confirmPassword, passwordErrorMessage }: ChangePasswordProps) => {
+const ChangePassword = ({
+    uid,
+    account,
+    password,
+    newPassword,
+    confirmPassword,
+    passwordErrorMessage,
+}: ChangePasswordProps) => {
     const [currentPasswordState, setCurrentPasswordState] = React.useState<string>(password);
     const [newPasswordState, setNewPasswordState] = React.useState<string>(newPassword);
     const [confirmPasswordState, setConfirmPasswordState] = React.useState<string>(confirmPassword);
@@ -22,7 +28,7 @@ const ChangePassword = ({ uid, account, password, newPassword, confirmPassword, 
                 <div>
                     <h1>{i18n._(t`Change Password`)}</h1>
                     <form method="post" action={`/interaction/${uid}/ChangePassword`}>
-                        <input type='hidden' name="account" value={account} />
+                        <input type="hidden" name="account" value={account} />
                         <input
                             required
                             type="text"
@@ -48,16 +54,12 @@ const ChangePassword = ({ uid, account, password, newPassword, confirmPassword, 
                         />
                         <br />
                         <div>{passwordErrorMessage}</div>
-                        <button type="submit">
-                            {i18n._(t`Change`)}
-                        </button>
+                        <button type="submit">{i18n._(t`Change`)}</button>
                     </form>
                     <form method="get" action={`/interaction/${uid}`}>
-                        <input type='hidden' name="account" value={account} />
-                        <input type='hidden' name="prevPassword" value={password} />
-                        <button type="submit">
-                            {i18n._(t`Back`)}
-                        </button>
+                        <input type="hidden" name="account" value={account} />
+                        <input type="hidden" name="prevPassword" value={password} />
+                        <button type="submit">{i18n._(t`Back`)}</button>
                     </form>
                 </div>
             )}

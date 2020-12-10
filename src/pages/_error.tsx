@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 const Error = ({ statusCode }: any) => {
   return (
     <div>

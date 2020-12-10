@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro';
-import { I18n } from "@lingui/react";
-import React from 'react';
+import { I18n } from '@lingui/react';
+import * as React from 'react';
 
 type NotAuthorizedProps = {
     uid: string;
@@ -15,11 +15,9 @@ const NotAuthorized = ({ uid, account, prevPassword }: NotAuthorizedProps) => {
                 <div>
                     <h1>{i18n._(t`Not Authorized`)}</h1>
                     <form method="get" action={`/interaction/${uid}`}>
-                        <input type='hidden' name="account" value={account} />
-                        <input type='hidden' name="prevPassword" value={prevPassword} />
-                        <button type="submit" >
-                            {i18n._(t`Back`)}
-                        </button>
+                        <input type="hidden" name="account" value={account} />
+                        <input type="hidden" name="prevPassword" value={prevPassword} />
+                        <button type="submit">{i18n._(t`Back`)}</button>
                     </form>
                 </div>
             )}

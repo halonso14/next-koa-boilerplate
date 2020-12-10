@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro';
-import { I18n } from "@lingui/react";
-import React from 'react';
+import { I18n } from '@lingui/react';
+import * as React from 'react';
 
 type LoginFailedProps = {
     uid: string;
@@ -9,7 +9,6 @@ type LoginFailedProps = {
     errorCode: number;
     errorMessage: string;
 };
-
 
 const LoginFailed = ({ uid, account, prevPassword, errorCode, errorMessage }: LoginFailedProps) => {
     return (
@@ -20,11 +19,9 @@ const LoginFailed = ({ uid, account, prevPassword, errorCode, errorMessage }: Lo
                     <div>{`error message: ${errorMessage}`}</div>
                     <div>{`error code: ${errorCode}`}</div>
                     <form method="get" action={`/interaction/${uid}`}>
-                        <input type='hidden' name="account" value={account} />
-                        <input type='hidden' name="prevPassword" value={prevPassword} />
-                        <button type="submit" >
-                            {i18n._(t`Back`)}
-                        </button>
+                        <input type="hidden" name="account" value={account} />
+                        <input type="hidden" name="prevPassword" value={prevPassword} />
+                        <button type="submit">{i18n._(t`Back`)}</button>
                     </form>
                 </div>
             )}
@@ -42,7 +39,7 @@ export function getServerSideProps(context: any) {
             account,
             prevPassword: password,
             errorCode,
-            errorMessage
+            errorMessage,
         },
     };
 }

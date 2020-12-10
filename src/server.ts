@@ -41,8 +41,6 @@ nextApp.prepare().then(() => {
   app.use(mount('', router(nextApp).routes()));
 
   app.listen(PORT, () => {
-    console.log(
-      `APP is listening on http://localhost:${PORT}/oauth
-    );
+    console.log(`APP is listening on http://localhost:${PORT}/oauth`);
   });
 });
