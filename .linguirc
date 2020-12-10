@@ -1,0 +1,10 @@
+{
+   "catalogs": [{
+      "path": "<rootDir>/src/common/i18n/{locale}/messages",
+      "include": ["<rootDir>/src/pages/", "<rootDir>/src/components/"],
+      "exclude": ["**/node_modules/**"]
+   }],
+   "locales": ["en", "ko"],
+   "format": "po",
+   "sourceLocale": "en"
+}
